@@ -6,13 +6,13 @@ Você deve executá-lo pelo arquivo "main.java".
 
 Para criação do projeto foi utilizado apenas o Java 8.
 
-Existe um menu para orientação quanto a navegação
+Existe um menu para orientação quanto a navegação:
 
-    1 . Adicionar tarefa
-    2 . Listar todas as tarefas
-    3 . Remover tarefa
-    4 . Excluir TODO List
-    5 . Encerrar aplicação
+1. Adicionar Tarefa
+2. Listar todas as tarefas
+3. Remover Tarefa
+4. Excluir Todo List
+5. Encerrar Aplicação
 
 Ao escolhero o numero, você executa a ação correspondente a ele
 
@@ -40,6 +40,7 @@ Apos a adição de todas as tarefas desejadas, se tem um segundo menu para lista
 2 . Ver as tarefas por categoria
 3 . Ver as tarefas por prioridade
 4 . Retornar ao menu principal
+
 Digite uma das opções acima
 
 Ao final as tarefas adicionadas são salvas em um arquivo TXT.
