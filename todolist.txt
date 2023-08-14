@@ -1,3 +1,5 @@
 Estudar|Etudar banco de dados|21/08/2023|2|Estudos|1
 Estudar|Estudar Java|14/08/2023|1|Estudos|2
 Viajar|Viajar para o Nordeste|20/11/2023|3|Lazer|3
+Estudar|Estudar java|14/08/2023|1|estudos|3
+Estudar|Estudar Groovy|21/08/2023|1||2

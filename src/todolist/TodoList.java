@@ -1,20 +1,28 @@
 package todolist;
 
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
 
 public class TodoList {
-    public ArrayList<Tarefa> todoItems;
+
+    ArrayList<Task> todoItems;
 
     public TodoList() {
+
         this.todoItems = new ArrayList<>();
     }
 
-    public void addItem(Tarefa item) {
+    public void addItem(Task item) {
         this.todoItems.add(item);
     }
 
     public void removeItem(int index) {
+
         this.todoItems.remove(index);
     }
 
@@ -38,28 +46,39 @@ public class TodoList {
         }
     }
 
-    public void saveToFile(String fileName) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-            for (Tarefa tarefa : this.todoItems) {
-                writer.println(tarefa.toFileFormat());
+    public void saveTasksToFile(String fileName) {
+        try {
+            File file = new File(fileName);
+
+            if (!file.exists()) {
+                file.createNewFile();
             }
-            writer.flush();
+
+            PrintWriter writer = new PrintWriter(new FileWriter(file));
+
+            for (Task task : this.todoItems) {
+                writer.println(task.toFileFormat());
+            }
+
+            writer.close();
+            System.out.println("Tarefas salvas com sucesso!");
         } catch (IOException e) {
-            System.out.println("Erro ao salvar o arquivo: " + e.getMessage());
+            System.out.println("Erro ao salvar as tarefas: " + e.getMessage());
         }
     }
 
-    public void loadFromFile(String fileName) {
+    public void loadTasksFromFile(String fileName) {
         try (Scanner scanner = new Scanner(new File(fileName))) {
             this.todoItems.clear();
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Tarefa tarefa = Tarefa.fromFileFormat(line);
-                this.todoItems.add(tarefa);
+                Task task = Task.fromFileFormat(line);
+                this.todoItems.add(task);
             }
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
         }
     }
+
 }

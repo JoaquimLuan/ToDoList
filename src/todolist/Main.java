@@ -1,67 +1,67 @@
 package todolist;
-import java.util.*;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        TodoList adicionaTask = new TodoList();
-        String arquivo = "/home/joaquimborges/Documentos/Acelera/ToDoList/TodoList/todolist.txt";
-        adicionaTask.loadFromFile(arquivo);
+        TodoList addTask = new TodoList();
+        addTask.loadTasksFromFile("todolist.txt");
         String verificador;
         boolean running = true;
 
-        System.out.println("Bom vindo ao programa de gerenciamento de tarefas");
+        System.out.println("Bom vindo ao programa Lista de Tarefas");
 
-        try (Scanner entrada = new Scanner(System.in)) {
-            while(running){
+        try(Scanner scanner = new Scanner(System.in)) {
+            while (running) {
                 System.out.println("===== TODO List =====\n" +
                         "1 . Adicionar tarefa\n" +
                         "2 . Listar todas as tarefas\n" +
                         "3 . Remover tarefa\n" +
                         "4 . Excluir TODO List\n" +
                         "5 . Encerrar aplicação");
-                verificador = entrada.nextLine();
-                switch (verificador){
+                verificador = scanner.nextLine();
+                switch (verificador) {
                     case "1":
-                        boolean addTask = true;
-                        while(addTask){
-                            Tarefa tarefaCompleta = new Tarefa();
+                        boolean adicionaTask = true;
+                        while (adicionaTask) {
+                            Task taskFull = new Task();
 
                             System.out.println("Digite o nome da tarefa ");
-                            tarefaCompleta.setNome(entrada.nextLine());
+                            taskFull.setNome(scanner.nextLine());
 
                             System.out.println("Digite a descrição da tarefa ");
-                            tarefaCompleta.setDescricao(entrada.nextLine());
+                            taskFull.setDescricao(scanner.nextLine());
 
                             System.out.println("Qual a data de termino da tarefa ?");
-                            tarefaCompleta.setDataTermino(entrada.nextLine());
+                            taskFull.setData(scanner.nextLine());
 
                             System.out.println("Digite a categoria ");
-                            tarefaCompleta.setCategoria(entrada.nextLine());
+                            taskFull.setCategoria(scanner.nextLine());
 
                             System.out.println("De 1 à 5 qual a prioridade da tarefa ? ");
-                            tarefaCompleta.setPrioridade(entrada.nextLine());
+                            taskFull.setPrioridade(scanner.nextLine());
 
                             System.out.println("Qual o Status da tarefa ? \n" +
                                     "1 . Todo \n" +
                                     "2 . Doing \n" +
                                     "3 . Done \n" +
                                     "Digite um número acima para definir o status da tarefa");
-                            tarefaCompleta.setStatus(entrada.nextLine());
-                            adicionaTask.addItem(tarefaCompleta);
-                            adicionaTask.saveToFile(arquivo);
+                            taskFull.setStatus(scanner.nextLine());
+                            addTask.addItem(taskFull);
+                            addTask.saveTasksToFile("todolist.txt");
 
                             System.out.println("Deseja adicionar uma nova tarefa?(Y/N)");
                             boolean verificaTask = true;
                             while(verificaTask){
-                                String task = entrada.nextLine();
-                                switch (task){
+                                String task = scanner.nextLine();
+                                switch (task.toUpperCase()){
                                     case "Y":
                                         verificaTask = false;
                                         break;
                                     case "N":
-                                        addTask = false;
+                                        adicionaTask = false;
                                         verificaTask = false;
                                         break;
                                     default:
@@ -70,55 +70,61 @@ public class Main {
                             }
                         }
                         break;
+
                     case "2":
-                        adicionaTask.printList();
-                        System.out.println("1 . Ver as tarefas por status\n" +
-                                "2 . Ver as tarefas por categoria\n" +
-                                "3 . Ver as tarefas por prioridade\n" +
+                        addTask.printList();
+                        System.out.println("1 . Ver as tarefas por categoria\n" +
+                                "2 . Ver as tarefas por prioridade\n" +
+                                "3 . Ver as tarefas por status\n" +
                                 "4 . Retornar ao menu principal" +
                                 "Digite uma das opções acima");
-                        String ordenador = entrada.nextLine();
-                        switch (ordenador){
+                        String ordenador = scanner.nextLine();
+                        switch (ordenador) {
                             case "1":
-                                adicionaTask.sortByStatus();
-                                adicionaTask.printList();
+                                addTask.sortByCategory();
+                                addTask.printList();
                                 break;
                             case "2":
-                                adicionaTask.sortByCategory();
-                                adicionaTask.printList();
+                                addTask.sortByPrioridade();
+                                addTask.printList();
                                 break;
                             case "3":
-                                adicionaTask.sortByPrioridade();
-                                adicionaTask.printList();
+                                addTask.sortByStatus();
+                                addTask.printList();
                                 break;
                             case "4":
-                                System.out.println("Retornar ao menu principal");
+                                System.out.println("Retornar ao menu principal\n");
                                 break;
                             default:
                                 System.out.println("Digite uma das opções acima");
+
                         }
                         break;
+
                     case "3":
-                        adicionaTask.printList();
+                        addTask.printList();
                         System.out.println("Digite o numero da tarefa para removê - la");
-                        adicionaTask.removeItem(Integer.parseInt(entrada.nextLine()) - 1);
-                        adicionaTask.printList();
+                        addTask.removeItem(Integer.parseInt(scanner.nextLine())-1);
+                        addTask.printList();
+                        addTask.saveTasksToFile("todolist.txt");
                         break;
+
                     case "4":
                         System.out.println("Agora você pode criar uma nova TODO List");
-                        adicionaTask = new TodoList();
-                        adicionaTask.saveToFile(arquivo);
+                        addTask = new TodoList();
                         break;
+
                     case "5":
                         System.out.println("Aplicação encerrada!");
                         running = false;
-                        adicionaTask.saveToFile(arquivo);
                         break;
                     default:
                         System.out.println("Digite um número válido");
+
                 }
+
             }
         }
-        adicionaTask.saveToFile(arquivo);
     }
+
 }
