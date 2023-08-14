@@ -1,28 +1,20 @@
 package todolist;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
-import java.io.File;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class TodoList {
-
-    ArrayList<Task> todoItems;
+    public ArrayList<Tarefa> todoItems;
 
     public TodoList() {
-
         this.todoItems = new ArrayList<>();
     }
 
-    public void addItem(Task item) {
+    public void addItem(Tarefa item) {
         this.todoItems.add(item);
     }
 
     public void removeItem(int index) {
-
         this.todoItems.remove(index);
     }
 
@@ -46,39 +38,28 @@ public class TodoList {
         }
     }
 
-    public void saveTasksToFile(String fileName) {
-        try {
-            File file = new File(fileName);
-
-            if (!file.exists()) {
-                file.createNewFile();
+    public void saveToFile(String fileName) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (Tarefa tarefa : this.todoItems) {
+                writer.println(tarefa.toFileFormat());
             }
-
-            PrintWriter writer = new PrintWriter(new FileWriter(file));
-
-            for (Task task : this.todoItems) {
-                writer.println(task.toFileFormat());
-            }
-
-            writer.close();
-            System.out.println("Tarefas salvas com sucesso!");
+            writer.flush();
         } catch (IOException e) {
-            System.out.println("Erro ao salvar as tarefas: " + e.getMessage());
+            System.out.println("Erro ao salvar o arquivo: " + e.getMessage());
         }
     }
 
-    public void loadTasksFromFile(String fileName) {
+    public void loadFromFile(String fileName) {
         try (Scanner scanner = new Scanner(new File(fileName))) {
             this.todoItems.clear();
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Task task = Task.fromFileFormat(line);
-                this.todoItems.add(task);
+                Tarefa tarefa = Tarefa.fromFileFormat(line);
+                this.todoItems.add(tarefa);
             }
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
         }
     }
-
 }
