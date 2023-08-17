@@ -1,30 +1,22 @@
 package todolist;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Task {
 
     private String nome;
     private String descricao;
-    private String data;
+    private Date data;
+    private Date alarmeTask;
     private String prioridade;
     private String categoria;
     private String status;
 
     public String toFileFormat() {
-        return nome + "|" + descricao + "|" + data + "|" + prioridade + "|" + categoria + "|" + status;
-    }
-
-    public static Task fromFileFormat(String line) {
-
-        String [] parts = line.split("\\|");
-
-        Task tarefa = new Task();
-        tarefa.setNome(parts[0]);
-        tarefa.setDescricao(parts[1]);
-        tarefa.setData(parts[2]);
-        tarefa.setPrioridade(parts[3]);
-        tarefa.setCategoria(parts[4]);
-        tarefa.setStatus(parts[5]);
-        return tarefa;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return nome + "|" + descricao + "|" + dateFormat.format(data) + "|" + (alarmeTask != null ? dateFormat.format(alarmeTask) : "") + "|" + prioridade + "|" + categoria + "|" + status;
     }
 
     public String getNome() {
@@ -39,11 +31,16 @@ public class Task {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public String getData() {
+    public Date getData() {
         return data;
     }
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
+    }
+    public Date getAlarmeTask() {
+        return alarmeTask; }
+    public void setAlarmeTask(Date alarmeTask) {
+        this.alarmeTask = alarmeTask;
     }
     public String getPrioridade() {
         return prioridade;
@@ -66,10 +63,12 @@ public class Task {
 
     @Override
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
         return "Tarefa{" +
                 "nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", dataTermino='" + data + '\'' +
+                ", dataTermino='" + dateFormat.format(data) + '\'' +
+                ", dataAlarme='" + dateFormat.format(alarmeTask) + '\'' +
                 ", prioridade='" + prioridade + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", Status='" + status + '\'' +

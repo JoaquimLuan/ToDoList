@@ -1,5 +1,6 @@
-Estudar|Etudar banco de dados|21/08/2023|2|Estudos|1
-Estudar|Estudar Java|14/08/2023|1|Estudos|2
-Viajar|Viajar para o Nordeste|20/11/2023|3|Lazer|3
-Estudar|Estudar java|14/08/2023|1|estudos|3
-Estudar|Estudar Groovy|21/08/2023|1||2
+estudar|estudar java|21/08/2023 21:00|16/08/2023 21:58|1|wstudos|2
+estudar|estudar groovy|21/08/2023 21:00|16/08/2023 22:04|estudos|1|2
+esss|aaaaa|21/08/2023 18:00|16/08/2023 22:00|1|estudos|2
+wwwww|wwwwwwww|21/08/2023 21:00|16/08/2023 22:12|wwwww|1|1
+eeeeeeeeeeeeee|rrrrrrrrrrrrr|30/08/2023 21:00|16/08/2023 22:14|eeeeeeeeeeeeee|1|1
+xxxxxxxxxxxx|xxxxxxxxxxxxx|21/08/2023 21:00|16/08/2023 22:15|1|xxxxxxxxxxxx|1

@@ -1,19 +1,18 @@
 package todolist;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.File;
-import java.util.Scanner;
 
 public class TodoList {
 
     ArrayList<Task> todoItems;
 
     public TodoList() {
-
         this.todoItems = new ArrayList<>();
     }
 
@@ -40,9 +39,36 @@ public class TodoList {
     }
 
     public void printList() {
-        for (int i = 0; i < this.todoItems.size(); i++) {
-            System.out.println((i + 1) + ". " + this.todoItems.get(i));
+        int index = 1;
+        for (Task task : this.todoItems) {
+            System.out.println(index + ". " + task);
+            index++;
         }
+    }
+
+    public static Task fromFileFormat(String line) {
+
+        String [] parts = line.split("\\|");
+        Task tarefa = new Task();
+        tarefa.setNome(parts[0]);
+        tarefa.setDescricao(parts[1]);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("pt", "BR"));
+        try {
+            Date data = dateFormat.parse(parts[2]);
+            tarefa.setData(data);
+        } catch (ParseException e) {
+            System.out.println("Erro ao fazer o parsing da data: " + e.getMessage());
+        }
+        try {
+            Date dataAlarme = dateFormat.parse(parts[3]);
+            tarefa.setAlarmeTask(dataAlarme);
+        } catch (ParseException e) {
+            System.out.println("Erro ao fazer o parsing da data de alarme: " + e.getMessage());
+        }
+        tarefa.setCategoria(parts[4]);
+        tarefa.setPrioridade(parts[5]);
+        tarefa.setStatus(parts[6]);
+        return tarefa;
     }
 
     public void saveTasksToFile(String fileName) {
@@ -66,17 +92,24 @@ public class TodoList {
         }
     }
 
+
     public void loadTasksFromFile(String fileName) {
-        try (Scanner scanner = new Scanner(new File(fileName))) {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File(fileName));
             this.todoItems.clear();
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Task task = Task.fromFileFormat(line);
+                Task task = fromFileFormat(line);
                 this.todoItems.add(task);
             }
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
         }
     }
 
