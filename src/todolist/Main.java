@@ -5,8 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
+
 
     public static void main(String[] args) {
 
@@ -31,7 +34,7 @@ public class Main {
                 verificador = scanner.nextLine();
                 switch (verificador) {
                     case "1":
-                        adicinaTarefa(scanner, addTask);
+                        adicionaTarefa(scanner, addTask);
                         break;
                     case "2":
                         listaTarefas(addTask, scanner);
@@ -58,7 +61,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        
+
         scanner.close();
     }
 
@@ -76,7 +79,7 @@ public class Main {
         return addTask;
     }
 
-    private static void removeTarefa(TodoList addTask, Scanner scanner) {
+    public static void removeTarefa(TodoList addTask, Scanner scanner) {
         addTask.printList();
         System.out.println("Digite o numero da tarefa para removê - la");
         addTask.removeItem(Integer.parseInt(scanner.nextLine())-1);
@@ -84,7 +87,7 @@ public class Main {
         addTask.saveTasksToFile("todolist.txt");
     }
 
-    private static void listaTarefas(TodoList addTask, Scanner scanner) {
+    static void listaTarefas(TodoList addTask, Scanner scanner) {
         addTask.printList();
         System.out.println("1 . Ver as tarefas por categoria\n" +
                 "2 . Ver as tarefas por prioridade\n" +
@@ -114,51 +117,115 @@ public class Main {
         }
     }
 
-    private static void adicinaTarefa(Scanner scanner, TodoList addTask) {
+    public static void adicionaTarefa(Scanner scanner, TodoList addTask) {
         boolean adicionaTask = true;
         while (adicionaTask) {
             Task taskFull = new Task();
 
             System.out.println("Digite o nome da tarefa ");
-            taskFull.setNome(scanner.nextLine());
+            String nomeTarefa;
+            boolean nomeTarefaValido = false;
+            while (!nomeTarefaValido) {
+                nomeTarefa = scanner.nextLine();
+                String regex = "^.{1,20}$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(nomeTarefa);
+                if (matcher.matches()) {
+                    taskFull.setNome(nomeTarefa);
+                    nomeTarefaValido = true;
+                } else {
+                    System.out.println("Nome de tarefa inválido. Deve ter até 20 caracteres. Tente novamente:");
+                }
+            }
 
             System.out.println("Digite a descrição da tarefa ");
-            taskFull.setDescricao(scanner.nextLine());
+            String descricaoTarefa;
+            boolean descricaoTarefaValida = false;
+            while (!descricaoTarefaValida) {
+                descricaoTarefa = scanner.nextLine();
+                String regexDescricao = "^.{1,50}$";
+                Pattern patternDescricao = Pattern.compile(regexDescricao);
+                Matcher matcherDescricao = patternDescricao.matcher(descricaoTarefa);
+                if (matcherDescricao.matches()) {
+                    taskFull.setDescricao(descricaoTarefa);
+                    descricaoTarefaValida = true;
+                } else {
+                    System.out.println("Descrição de tarefa inválida. Deve ter até 50 caracteres. Tente novamente:");
+                }
+            }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("pt", "BR"));
-            System.out.println("Qual a data de término da tarefa? (dd/MM/yyyy HH:mm)");
-            String dataInput = scanner.nextLine();
-            try {
-                Date data = dateFormat.parse(dataInput);
-                taskFull.setData(data);
-            } catch (java.text.ParseException e) {
-                System.out.println("Data inválida! Digite a data no formato correto (dd/MM/yyyy HH:mm).");
-                continue;
+            Date data = null;
+            while (data == null) {
+                System.out.println("Qual a data de término da tarefa? (dd/MM/yyyy HH:mm)");
+                String dataInput = scanner.nextLine();
+                try {
+                    data = dateFormat.parse(dataInput);
+                    taskFull.setData(data);
+                } catch (java.text.ParseException e) {
+                    System.out.println("Data inválida! Digite a data no formato correto (dd/MM/yyyy HH:mm). Tente novamente:");
+                }
             }
             adicionaTask = false;
+            Date dataAlarme = null;
 
-            System.out.print("Digite a data do alarme (dd/MM/yyyy HH:mm) :");
-            String dataAlarmeStr = scanner.nextLine();
-            try {
-                Date dataAlarme = dateFormat.parse(dataAlarmeStr);
-                taskFull.setAlarmeTask(dataAlarme);
-                System.out.println("Alarme configurado com sucesso para " + dateFormat.format(dataAlarme));
-            } catch (ParseException e) {
-                System.out.println("Formato de data inválido. Certifique-se de usar o formato dd/MM/yyyy HH:mm.");
+            while (dataAlarme == null) {
+                System.out.print("Digite a data do alarme (dd/MM/yyyy HH:mm) :");
+                String dataAlarmeStr = scanner.nextLine();
+                try {
+                    dataAlarme = dateFormat.parse(dataAlarmeStr);
+                    taskFull.setAlarmeTask(dataAlarme);
+                    System.out.println("Alarme configurado com sucesso para " + dateFormat.format(dataAlarme));
+                } catch (ParseException e) {
+                    System.out.println("Formato de data inválido. Certifique-se de usar o formato dd/MM/yyyy HH:mm. Tente novamente:");
+                }
             }
 
             System.out.println("Digite a categoria ");
-            taskFull.setCategoria(scanner.nextLine());
+            String categoriaTarefa;
+            boolean categoriaTarefaValida = false;
+            while (!categoriaTarefaValida) {
+                categoriaTarefa = scanner.nextLine();
+                String regexCategoria = "^.{1,20}$";
+                Pattern patternCategoria = Pattern.compile(regexCategoria);
+                Matcher matcherCategoria = patternCategoria.matcher(categoriaTarefa);
+                if (matcherCategoria.matches()) {
+                    taskFull.setCategoria(categoriaTarefa);
+                    categoriaTarefaValida = true;
+                } else {
+                    System.out.println("Categoria de tarefa inválida. Deve ter até 20 caracteres. Tente novamente:");
+                }
+            }
 
             System.out.println("De 1 à 5 qual a prioridade da tarefa ? ");
-            taskFull.setPrioridade(scanner.nextLine());
+            String prioridadeInput = scanner.nextLine();
+
+            while (!prioridadeInput.matches("^[1-5]$")) {
+                System.out.println("Prioridade inválida. Digite um número de 1 a 5.");
+                System.out.println("De 1 à 5 qual a prioridade da tarefa ? ");
+                prioridadeInput = scanner.nextLine();
+            }
+            taskFull.setPrioridade(prioridadeInput);
 
             System.out.println("Qual o Status da tarefa ? \n" +
                     "1 . Todo \n" +
                     "2 . Doing \n" +
                     "3 . Done \n" +
                     "Digite um número acima para definir o status da tarefa");
-            taskFull.setStatus(scanner.nextLine());
+
+            String statusInput;
+            boolean statusValido = false;
+            while (!statusValido) {
+                statusInput = scanner.nextLine();
+                if (statusInput.matches("[1-3]")) {
+                    int status = Integer.parseInt(statusInput);
+                    taskFull.setStatus(status);
+                    statusValido = true;
+                } else {
+                    System.out.println("Status inválido. Digite 1, 2 ou 3. Tente novamente:");
+                }
+            }
+
             addTask.addItem(taskFull);
             addTask.saveTasksToFile("todolist.txt");
 
@@ -193,5 +260,6 @@ public class Main {
         }
 
     }
+
 
 }

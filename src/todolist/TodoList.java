@@ -10,7 +10,11 @@ import java.io.File;
 
 public class TodoList {
 
-    ArrayList<Task> todoItems;
+    public ArrayList<Task> getTodoItems() {
+        return todoItems;
+    }
+
+    public ArrayList<Task> todoItems;
 
     public TodoList() {
         this.todoItems = new ArrayList<>();
@@ -25,13 +29,11 @@ public class TodoList {
     }
 
     public void sortByStatus() {
-        Collections.sort(this.todoItems, (t1, t2) -> t1.getStatus().compareTo(t2.getStatus()));
-        ;
+        Collections.sort(this.todoItems, (t1, t2) -> Integer.compare(t1.getStatus(), t2.getStatus()));
     }
 
     public void sortByPrioridade() {
         Collections.sort(this.todoItems, (t1, t2) -> t1.getPrioridade().compareTo(t2.getPrioridade()));
-        ;
     }
 
     public void sortByCategory() {
@@ -48,7 +50,7 @@ public class TodoList {
 
     public static Task fromFileFormat(String line) {
 
-        String [] parts = line.split("\\|");
+        String[] parts = line.split("\\|");
         Task tarefa = new Task();
         tarefa.setNome(parts[0]);
         tarefa.setDescricao(parts[1]);
@@ -67,7 +69,13 @@ public class TodoList {
         }
         tarefa.setCategoria(parts[4]);
         tarefa.setPrioridade(parts[5]);
-        tarefa.setStatus(parts[6]);
+        try {
+            int status = Integer.parseInt(parts[6]);
+            tarefa.setStatus(status);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro ao converter o status para inteiro: " + e.getMessage());
+        }
+
         return tarefa;
     }
 
@@ -112,5 +120,6 @@ public class TodoList {
             }
         }
     }
+
 
 }

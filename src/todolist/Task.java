@@ -12,7 +12,7 @@ public class Task {
     private Date alarmeTask;
     private String prioridade;
     private String categoria;
-    private String status;
+    private int status;
 
     public String toFileFormat() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -54,10 +54,10 @@ public class Task {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
