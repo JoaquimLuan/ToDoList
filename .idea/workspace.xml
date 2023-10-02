@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f725cd-f642-46de-be67-be650c52fff1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/teste/MainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/teste/RemoveTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TodoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todolist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/todolist/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todolist/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/todolist/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todolist/TodoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/todolist/TodoList.java" afterDir="false" />
+    <list default="true" id="48f725cd-f642-46de-be67-be650c52fff1" name="Changes" comment="feat - Adaptando ao Gradle">
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/TodoList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/teste/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/teste/RemoveTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RemoveTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todolist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todolist/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todolist/TodoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TodoList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todolist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/todolist.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/joaquimborges/Documentos/teste1",
+    "last_opened_file_path": "/home/joaquimborges/Documentos/TodoList",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,12 +100,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693081598744</updated>
-      <workItem from="1693081603081" duration="9142000" />
+      <workItem from="1693081603081" duration="9605000" />
+      <workItem from="1694003839244" duration="36000" />
+      <workItem from="1696209601298" duration="1219000" />
     </task>
+    <task id="LOCAL-00001" summary="ToDoList 1.0.2 - Criando teste unitario">
+      <option name="closed" value="true" />
+      <created>1693097709688</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693097709688</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ToDoList 1.0.2 - Criando teste unitario" />
+    <MESSAGE value="feat - Adaptando ao Gradle" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat - Adaptando ao Gradle" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ToDoList$MainTest.ic" NAME="MainTest Coverage Results" MODIFIED="1693097054209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -1,17 +1,17 @@
+import main.org.example.Main;
+import main.org.example.Task;
+import main.org.example.TodoList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import todolist.Main;
-import todolist.Task;
-import todolist.TodoList;
+
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.mockito.Mockito.*;
+
 
 public class MainTest {
 

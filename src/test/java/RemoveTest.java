@@ -1,9 +1,11 @@
+import main.org.example.Main;
+import main.org.example.Task;
+import main.org.example.TodoList;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import todolist.Main;
-import todolist.Task;
-import todolist.TodoList;
+import org.mockito.verification.VerificationMode;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,10 @@ public class RemoveTest {
         verify(addTask, times(2)).printList(); // Verifica duas chamadas ao método printList()
         verify(addTask, times(1)).removeItem(0);
         verify(addTask, times(1)).saveTasksToFile("todolist.txt");
+    }
+
+    private VerificationMode times(int i) {
+        return null;
     }
 
 }

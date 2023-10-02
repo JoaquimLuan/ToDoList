@@ -1,7 +1,8 @@
-estudar|estudar groovy|21/08/2023 21:00|16/08/2023 22:04|1|estudos|2
-wwwww|wwwwwwww|21/08/2023 21:00|16/08/2023 22:12|1|wwwww|1
-eeeeeeeeeeeeee|rrrrrrrrrrrrr|30/08/2023 21:00|16/08/2023 22:14|1|eeeeeeeeeeeeee|1
-esss|aaaaa|21/08/2023 18:00|16/08/2023 22:00|estudos|1|2
-estudar|estudar java|21/08/2023 21:00|16/08/2023 21:58|wstudos|1|2
-xxxxxxxxxxxx|xxxxxxxxxxxxx|21/08/2023 21:00|16/08/2023 22:15|xxxxxxxxxxxx|1|1
-sasasasas000|324324234324|12/12/2023 11:33|12/12/2023 11:33|1|121231|1
+estudar|estudar groovy|21/08/2023 21:00|16/08/2023 22:04|estudos|1|2
+wwwww|wwwwwwww|21/08/2023 21:00|16/08/2023 22:12|wwwww|1|1
+eeeeeeeeeeeeee|rrrrrrrrrrrrr|30/08/2023 21:00|16/08/2023 22:14|eeeeeeeeeeeeee|1|1
+esss|aaaaa|21/08/2023 18:00|16/08/2023 22:00|1|estudos|2
+estudar|estudar java|21/08/2023 21:00|16/08/2023 21:58|1|wstudos|2
+xxxxxxxxxxxx|xxxxxxxxxxxxx|21/08/2023 21:00|16/08/2023 22:15|1|xxxxxxxxxxxx|1
+sasasasas000|324324234324|12/12/2023 11:33|12/12/2023 11:33|121231|1|1
+Viajar|Viajar para EUA|20/11/2024 11:11|19/11/2024 07:00|3|lAZER|1
